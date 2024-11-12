@@ -4,8 +4,15 @@ const DisplayName = () => {
   const [fullName,setFullName] = useState('')
   const handleSubmit = (e)=>{
     e.preventDefault()
-    const firstName = `${e.target[0].value}`;
-    const lastName = `${e.target[1].value}`;
+    console.log('the field is empty')
+    const firstName = `${e.target[0].value}`.trim();
+    const lastName = `${e.target[1].value}`.trim();
+
+    if(!firstName || !lastName){
+        setFullName('');
+        return;
+    }
+
     setFullName(`${firstName} ${lastName}`)
   }
   return (
