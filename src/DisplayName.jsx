@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 const DisplayName = () => {
   const [fullName,setFullName] = useState('')
+
   const handleSubmit = (e)=>{
     e.preventDefault()
     console.log('the field is empty')
@@ -27,7 +28,9 @@ const DisplayName = () => {
             <br />
             <button type='submit'>Submit</button>
         </form>
-        <p>Full Name: {fullName}</p>
+        {fullName === '' ? (<p></p>) : (<p>Full Name: {fullName}</p>)}
+        
+
     </div>
   )
 }
