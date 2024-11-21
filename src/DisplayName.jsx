@@ -59,65 +59,122 @@
 
 
 
+// import React, { useState, useRef } from 'react';
+
+// const DisplayName = () => {
+//   const [fullName, setFullName] = useState('');
+//   const firstNameRef = useRef(null); // Reference for the first name input
+//   const lastNameRef = useRef(null); // Reference for the last name input
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault(); // Prevent default form submission
+//     console.log('form is submitted')
+//     const firstName = firstNameRef.current.value.trim();
+//     const lastName = lastNameRef.current.value.trim();
+
+//     if (!firstName || !lastName) {
+//       setFullName(''); // Reset fullName if any field is empty
+//       return; // The form won't submit due to the `required` attribute
+//     }
+
+//     setFullName(firstName+ " " +lastName); // Set the full name if both fields are valid
+//   };
+
+//   const handleInput = () => {
+//     const firstName = firstNameRef.current.value.trim();
+//     const lastName = lastNameRef.current.value.trim();
+
+//     // Dynamically update the fullName or reset it when any field is empty
+//     if (!firstName || !lastName) {
+//       setFullName('');
+//     } 
+//   };
+
+//   return (
+//     <div>
+//       <h1>Full Name Display</h1>
+//       <form onSubmit={handleSubmit}>
+//         First Name:
+//         <input
+//           id="firstname"
+//           name="firstname"
+//           type="text"
+//           ref={firstNameRef} // Attach ref
+//           onInput={handleInput} // Handle input changes
+//           required
+//         />
+//         <br />
+//         Last Name:
+//         <input
+//           id="lastname"
+//           name="lastname"
+//           type="text"
+//           ref={lastNameRef} // Attach ref
+//           onInput={handleInput} // Handle input changes
+//           required
+//         />
+//         <br />
+//         <button type="submit">Submit</button>
+//       </form>
+//       {fullName === '' ? <p></p> : <p>Full Name: {fullName}</p>}
+//     </div>
+//   );
+// };
+
+// export default DisplayName;
+
+
 import React, { useState, useRef } from 'react';
 
 const DisplayName = () => {
-  const [fullName, setFullName] = useState('');
-  const firstNameRef = useRef(null); // Reference for the first name input
-  const lastNameRef = useRef(null); // Reference for the last name input
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    console.log('form is submitted')
-    const firstName = firstNameRef.current.value.trim();
-    const lastName = lastNameRef.current.value.trim();
-
-    if (!firstName || !lastName) {
-      setFullName(''); // Reset fullName if any field is empty
-      return; // The form won't submit due to the `required` attribute
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent page reload
+    if (firstName && lastName) {
+      setFullName(`${firstName} ${lastName}`);
+    } else {
+      setFullName(""); // Clear full name if fields are empty
     }
-
-    setFullName(firstName+ " " +lastName); // Set the full name if both fields are valid
-  };
-
-  const handleInput = () => {
-    const firstName = firstNameRef.current.value.trim();
-    const lastName = lastNameRef.current.value.trim();
-
-    // Dynamically update the fullName or reset it when any field is empty
-    if (!firstName || !lastName) {
-      setFullName('');
-    } 
   };
 
   return (
-    <div>
+    <div style={{ margin: "20px", fontFamily: "Arial, sans-serif" }}>
       <h1>Full Name Display</h1>
       <form onSubmit={handleSubmit}>
-        First Name:
-        <input
-          id="firstname"
-          name="firstname"
-          type="text"
-          ref={firstNameRef} // Attach ref
-          onInput={handleInput} // Handle input changes
-        />
-        <br />
-        Last Name:
-        <input
-          id="lastname"
-          name="lastname"
-          type="text"
-          ref={lastNameRef} // Attach ref
-          onInput={handleInput} // Handle input changes
-        />
-        <br />
+        <div style={{ marginBottom: "10px" }}>
+          <label>
+            First Name:
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              style={{ marginLeft: "10px" }}
+            />
+          </label>
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label>
+            Last Name:
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              style={{ marginLeft: "10px" }}
+            />
+          </label>
+        </div>
         <button type="submit">Submit</button>
       </form>
-      {fullName === '' ? <p></p> : <p>Full Name: {fullName}</p>}
+      {fullName && (
+        <h2 style={{ marginTop: "20px" }}>Full Name: {fullName}</h2>
+      )}
     </div>
   );
 };
 
 export default DisplayName;
-
