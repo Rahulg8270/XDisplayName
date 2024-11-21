@@ -101,7 +101,6 @@ const DisplayName = () => {
           type="text"
           ref={firstNameRef} // Attach ref
           onInput={handleInput} // Handle input changes
-          required
         />
         <br />
         Last Name:
@@ -111,7 +110,6 @@ const DisplayName = () => {
           type="text"
           ref={lastNameRef} // Attach ref
           onInput={handleInput} // Handle input changes
-          required
         />
         <br />
         <button type="submit">Submit</button>
