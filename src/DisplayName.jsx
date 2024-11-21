@@ -77,7 +77,7 @@ const DisplayName = () => {
       return; // The form won't submit due to the `required` attribute
     }
 
-    setFullName(`${firstName} ${lastName}`); // Set the full name if both fields are valid
+    setFullName(firstName+ " " +lastName); // Set the full name if both fields are valid
   };
 
   const handleInput = () => {
@@ -94,7 +94,7 @@ const DisplayName = () => {
     <div>
       <h1>Full Name Display</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstname">First Name:</label>
+        First Name:
         <input
           id="firstname"
           name="firstname"
@@ -104,7 +104,7 @@ const DisplayName = () => {
           required
         />
         <br />
-        <label htmlFor="lastname">Last Name:</label>
+        Last Name:
         <input
           id="lastname"
           name="lastname"
